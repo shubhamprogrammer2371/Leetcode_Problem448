@@ -1,0 +1,17 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize){
+    int* ans = (int*)malloc((numsSize+1)*sizeof(int));
+    int* temp = (int*)malloc((numsSize+1)*sizeof(int));
+    *returnSize = 0;
+    for( int i = 1 ; i < numsSize+1 ; i++)
+        temp[i] = 0;
+    for( int i = 0 ; i < numsSize ; i++)
+        temp[nums[i]] = 1;
+    for( int i = 1 ; i < numsSize+1 ; i++)
+        if(!temp[i])
+            ans[(*returnSize)++] = i;
+    free(temp);
+    return ans;
+}
